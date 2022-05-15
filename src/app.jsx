@@ -1,20 +1,14 @@
-import { Logo } from './logo'
+import { Button } from 'react-bootstrap'
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 
-export function App() {
+export const App = () => {
   return (
     <>
-      <Logo />
-      <p>Hello Vite + Preact!</p>
-      <p>
-        <a
-          class="link"
-          href="https://preactjs.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Preact
-        </a>
-      </p>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<></>}/>
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
