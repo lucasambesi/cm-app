@@ -27,5 +27,6 @@ module.exports = {
     "require-jsdoc": MODE.OFF,
     "no-unused-vars": MODE.OFF,
     semi: [2, "never"],
+    indent: [MODE.WARN, 4]
   },
 };
