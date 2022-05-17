@@ -1,14 +1,14 @@
 import {useState, useEffect} from 'react'
-import {getLists} from '../helpers/getLists'
+import {getTopCoins} from '../helpers/getCoins'
 
-export const useFetchLists = () => {
+export const useFetchCoins = () => {
     const [state, setState] = useState({
-        data: [],
+        data: {},
         loading: true,
     })
 
     useEffect(() => {
-        getLists().then((response) => {
+        getTopCoins().then((response) => {
             setState({
                 data: response,
                 loading: false,
