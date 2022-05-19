@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
+import {LangContext} from '../hooks/langContext'
+
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
@@ -13,7 +15,9 @@ import MenuItem from '@mui/material/MenuItem'
 import MenuIcon from '@mui/icons-material/Menu'
 import AdbIcon from '@mui/icons-material/Adb'
 
-export const NavBar = ({lang = 'en'}) => {
+export const NavBar = () => {
+    const {lang} = useContext(LangContext)
+
     const [anchorElNav, setAnchorElNav] = useState(null)
     const [anchorElUser, setAnchorElUser] = useState(null)
 
