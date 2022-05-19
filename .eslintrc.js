@@ -1,7 +1,7 @@
 const MODE = {
-  OFF: "off",
-  WARN: "warn",
-  ERROR: "error",
+  OFF: 'off',
+  WARN: 'warn',
+  ERROR: 'error',
 };
 
 module.exports = {
@@ -9,24 +9,25 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["plugin:react/recommended", "google"],
+  extends: ['plugin:react/recommended', 'google'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: "latest",
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  plugins: ["react"],
+  plugins: ['react'],
   rules: {
-    "linebreak-style": [
+    'linebreak-style': [
       MODE.ERROR,
-      process.platform === "win32" ? "windows" : "unix",
+      process.platform === 'win32' ? 'windows' : 'unix',
     ],
-    "react/react-in-jsx-scope": MODE.OFF,
-    "require-jsdoc": MODE.OFF,
-    "no-unused-vars": MODE.OFF,
-    semi: [2, "never"],
-    indent: [MODE.WARN, 4]
+    'react/react-in-jsx-scope': MODE.OFF,
+    'require-jsdoc': MODE.OFF,
+    'no-unused-vars': MODE.OFF,
+    semi: [2, 'never'],
+    indent: [MODE.WARN, 4],
+    'react/prop-types':  MODE.OFF,
   },
 };

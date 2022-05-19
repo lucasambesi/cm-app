@@ -1,0 +1,19 @@
+[
+    {
+        "name": "lista 1",
+        "items": [
+            {
+                "id":"Leche",
+                "name":"Leche",
+                "active": true,
+                "cantidad":1
+            },
+            {
+                "id": "Manteca",
+                "name":"Manteca",
+                "active": true,
+                "cantidad":1
+            }
+        ]  
+    }
+]
