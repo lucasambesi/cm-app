@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
@@ -14,9 +14,9 @@ import MenuItem from '@mui/material/MenuItem'
 import MenuIcon from '@mui/icons-material/Menu'
 import AdbIcon from '@mui/icons-material/Adb'
 
-export const NavBar = ({lang = 'es'}) => {
-    const [anchorElNav, setAnchorElNav] = React.useState(null)
-    const [anchorElUser, setAnchorElUser] = React.useState(null)
+export const NavBar = ({lang = 'en'}) => {
+    const [anchorElNav, setAnchorElNav] = useState(null)
+    const [anchorElUser, setAnchorElUser] = useState(null)
 
     const translate = {
         es: {
@@ -134,7 +134,7 @@ export const NavBar = ({lang = 'es'}) => {
                         {translate[lang].pages.map((page) => (
                             <Button
                                 key={page}
-                                onClick={handleCloseNavMenu}
+                                href={page}
                                 sx={{my: 2, color: 'white', display: 'block'}}
                             >
                                 {page}
