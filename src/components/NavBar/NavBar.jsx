@@ -1,5 +1,4 @@
 import React, {useContext, useState} from 'react'
-import {LangContext} from '../hooks/langContext'
 
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
@@ -15,6 +14,9 @@ import MenuItem from '@mui/material/MenuItem'
 import MenuIcon from '@mui/icons-material/Menu'
 import AdbIcon from '@mui/icons-material/Adb'
 
+import {LangContext} from '../../hooks/langContext'
+import {MenuItems} from './MenuItems'
+
 export const NavBar = () => {
     const {lang} = useContext(LangContext)
 
@@ -26,13 +28,11 @@ export const NavBar = () => {
             appName: 'Crypto Manager',
             pages: ['Mercados', 'Portafolio'],
             settingsTab: 'Abrir ajustes',
-            settings: ['Perfil', 'Cuenta', 'Salir'],
         },
         en: {
             appName: 'Crypto Manager',
             pages: ['Markets', 'Portfolio'],
             settingsTab: 'Open settings',
-            settings: ['Profile', 'Account', 'Logout'],
         },
     }
 
@@ -186,15 +186,7 @@ export const NavBar = () => {
                             }}
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}>
-                            {translate[lang].settings.map((setting) => (
-                                <MenuItem
-                                    key={setting}
-                                    onClick={handleCloseUserMenu}>
-                                    <Typography
-                                        textAlign="center">{setting}
-                                    </Typography>
-                                </MenuItem>
-                            ))}
+                            <MenuItems/>
                         </Menu>
                     </Box>
                 </Toolbar>
