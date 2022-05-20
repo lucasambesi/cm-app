@@ -6,17 +6,11 @@ import {NavBar} from './components/NavBar/NavBar'
 import {LangContext} from './hooks/langContext'
 
 export const App = () => {
-    const [lang, setLang] = useState('es')
+    const [lang, setLang] = useState('en')
 
-    const translate = {
-        es: {
-            markets: 'Mercados',
-            portfolio: 'Portafolio',
-        },
-        en: {
-            markets: 'Markets',
-            portfolio: 'Portfolio',
-        },
+    const paths = {
+        markets: 'markets',
+        portfolio: 'portfolio',
     }
 
     return (
@@ -28,10 +22,10 @@ export const App = () => {
                 <BrowserRouter>
                     <Routes>
                         <Route
-                            path={translate[lang].markets}
+                            path={paths.markets}
                             element={<Markets/>}/>
                         <Route
-                            path={translate[lang].portfolio}
+                            path={paths.portfolio}
                             element={<h1>Portfolio</h1>}/>
                         <Route
                             path="/"

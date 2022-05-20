@@ -26,13 +26,29 @@ export const NavBar = () => {
     const translate = {
         es: {
             appName: 'Crypto Manager',
-            pages: ['Mercados', 'Portafolio'],
             settingsTab: 'Abrir ajustes',
+            pages: [
+                {
+                    name: 'Mercados',
+                    path: 'markets',
+                },
+                {
+                    name: 'Portafolio',
+                    path: 'portfolio',
+                }],
         },
         en: {
             appName: 'Crypto Manager',
-            pages: ['Markets', 'Portfolio'],
             settingsTab: 'Open settings',
+            pages: [
+                {
+                    name: 'Markets',
+                    path: 'markets',
+                },
+                {
+                    name: 'Portfolio',
+                    path: 'portfolio',
+                }],
         },
     }
 
@@ -106,12 +122,12 @@ export const NavBar = () => {
                                     md: 'none',
                                 },
                             }}>
-                            {translate[lang].pages.map((page) => (
+                            {translate[lang].pages.map((page, index) => (
                                 <MenuItem
-                                    key={page}
+                                    key={page.name}
                                     onClick={handleCloseNavMenu}>
                                     <Typography
-                                        textAlign="center">{page}
+                                        textAlign="center">{page.name}
                                     </Typography>
                                 </MenuItem>
                             ))}
@@ -151,13 +167,13 @@ export const NavBar = () => {
                         }}}>
                         {translate[lang].pages.map((page) => (
                             <Button
-                                key={page}
-                                href={page}
+                                key={page.name}
+                                href={page.path}
                                 sx={{my: 2,
                                     color: 'white',
                                     display: 'block',
                                 }}>
-                                {page}
+                                {page.name}
                             </Button>
                         ))}
                     </Box>
