@@ -14,7 +14,7 @@ export const Markets = () => {
 
     return (
         <>
-            {!loading && <TableCoins coins={data}/>}
+            {!loading ? <TableCoins coins={data}/> : <h1>Cargando</h1>}
         </>
     )
 }
