@@ -1,12 +1,24 @@
 /* eslint-disable camelcase */
+import React from 'react'
+
 import clsx from 'clsx'
 import {Avatar} from '@mui/material'
 
+const translate = {
+    icon: 'Icon',
+    symbol: 'Symbol',
+    coin: 'Coin',
+    price: 'Price',
+    last24hs: 'Last 24hs',
+    low24hs: 'Max low 24hs',
+    high24hs: 'Max high 24hs',
+    diff24hs: 'Diff min/max 24hs',
+}
 export const columns = [
     {
         field: 'image',
         headerAlign: 'center',
-        headerName: 'Icon',
+        headerName: translate.icon,
         sortable: false,
         width: 70,
         pinnable: true,
@@ -26,7 +38,7 @@ export const columns = [
     {
         field: 'symbol',
         headerAlign: 'center',
-        headerName: 'Symbol',
+        headerName: translate.symbol,
         sortable: false,
         width: 80,
         valueGetter: ({row: {symbol}}) =>
@@ -40,7 +52,7 @@ export const columns = [
     {
         field: 'name',
         headerAlign: 'center',
-        headerName: 'Coin',
+        headerName: translate.coin,
         sortable: false,
         width: 120,
         valueGetter: ({row: {name}}) =>
@@ -54,7 +66,7 @@ export const columns = [
     {
         field: 'current_price',
         headerAlign: 'center',
-        headerName: 'Price',
+        headerName: translate.price,
         sortable: false,
         width: 120,
         valueGetter: ({row: {current_price: current}}) =>
@@ -68,7 +80,7 @@ export const columns = [
     {
         field: 'price_change_24h',
         headerAlign: 'center',
-        headerName: 'Price 24h',
+        headerName: translate.last24hs,
         sortable: false,
         width: 120,
         valueGetter: ({row: {price_change_24h: price}}) =>
@@ -77,7 +89,6 @@ export const columns = [
             if (price == null) {
                 return ''
             }
-
             return clsx('coin-color', {
                 negative: price < 0,
                 positive: price > 0,
@@ -87,8 +98,7 @@ export const columns = [
     {
         field: 'low_24h',
         headerAlign: 'center',
-        headerName: 'Low 24',
-        description: 'Max low in 24hs',
+        headerName: translate.low24hs,
         sortable: false,
         width: 120,
         valueGetter: ({row: {low_24h}}) =>
@@ -102,8 +112,7 @@ export const columns = [
     {
         field: 'high_24h',
         headerAlign: 'center',
-        headerName: 'High 24',
-        description: 'Max high in 24hs',
+        headerName: translate.high24hs,
         sortable: false,
         width: 120,
         valueGetter: ({row: {high_24h}}) =>
@@ -117,13 +126,12 @@ export const columns = [
     {
         field: 'diff_24hs',
         headerAlign: 'center',
-        headerName: 'Diff 24hs',
-        description: 'Diff min and max in 24hs',
+        headerName: translate.diff24hs,
         sortable: false,
         width: 120,
         valueGetter: ({row: {low_24h, high_24h}}) =>
             `$${high_24h - low_24h || ''}`,
-        cellClassName: (params) => {
+        cellClassName: ({row: {high_24h, low_24h}}) => {
             return clsx('coin-color', {
                 positive: (high_24h - low_24h),
             })
@@ -137,3 +145,5 @@ export const columns = [
         },
     },
 ]
+
+

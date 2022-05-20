@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
@@ -14,45 +14,62 @@ import MenuItem from '@mui/material/MenuItem'
 import MenuIcon from '@mui/icons-material/Menu'
 import AdbIcon from '@mui/icons-material/Adb'
 
-export const NavBar = ({lang = 'en'}) => {
+import {LangContext} from '../../hooks/langContext'
+import {MenuItems} from './MenuItems'
+
+export const NavBar = () => {
+    const {lang} = useContext(LangContext)
+
     const [anchorElNav, setAnchorElNav] = useState(null)
     const [anchorElUser, setAnchorElUser] = useState(null)
 
     const translate = {
         es: {
             appName: 'Crypto Manager',
-            pages: ['Mercados', 'Portafolio'],
             settingsTab: 'Abrir ajustes',
-            settings: ['Perfil', 'Cuenta', 'Salir'],
+            pages: [
+                {
+                    name: 'Mercados',
+                    path: 'markets',
+                },
+                {
+                    name: 'Portafolio',
+                    path: 'portfolio',
+                }],
         },
         en: {
             appName: 'Crypto Manager',
-            pages: ['Markets', 'Portfolio'],
             settingsTab: 'Open settings',
-            settings: ['Profile', 'Account', 'Logout'],
+            pages: [
+                {
+                    name: 'Markets',
+                    path: 'markets',
+                },
+                {
+                    name: 'Portfolio',
+                    path: 'portfolio',
+                }],
         },
     }
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget)
-    }
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget)
-    }
+    const handleOpenNavMenu = (e) => setAnchorElNav(e.currentTarget)
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null)
-    }
+    const handleCloseNavMenu = () => setAnchorElNav(null)
 
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null)
-    }
+    const handleOpenUserMenu = (e) => setAnchorElUser(e.currentTarget)
+
+    const handleCloseUserMenu = () => setAnchorElUser(null)
 
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 1}} />
+                    <AdbIcon sx={{
+                        display: {
+                            xs: 'none',
+                            md: 'flex',
+                        },
+                        mr: 1}}/>
                     <Typography
                         variant="h6"
                         noWrap
@@ -66,20 +83,23 @@ export const NavBar = ({lang = 'en'}) => {
                             letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
-                        }}
-                    >
+                        }}>
                         {translate[lang].appName}
                     </Typography>
 
-                    <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+                    <Box sx={{
+                        flexGrow: 1,
+                        display: {
+                            xs: 'flex',
+                            md: 'none',
+                        }}}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
                             onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
+                            color="inherit">
                             <MenuIcon />
                         </IconButton>
                         <Menu
@@ -97,21 +117,28 @@ export const NavBar = ({lang = 'en'}) => {
                             open={Boolean(anchorElNav)}
                             onClose={handleCloseNavMenu}
                             sx={{
-                                display: {xs: 'block', md: 'none'},
-                            }}
-                        >
-                            {translate[lang].pages.map((page) => (
+                                display: {
+                                    xs: 'block',
+                                    md: 'none',
+                                },
+                            }}>
+                            {translate[lang].pages.map((page, index) => (
                                 <MenuItem
-                                    key={page}
+                                    key={page.name}
                                     onClick={handleCloseNavMenu}>
                                     <Typography
-                                        textAlign="center">{page}
+                                        textAlign="center">{page.name}
                                     </Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}} />
+                    <AdbIcon sx={{
+                        display: {
+                            xs: 'flex',
+                            md: 'none'},
+                        mr: 1,
+                    }}/>
                     <Typography
                         variant="h5"
                         noWrap
@@ -119,29 +146,37 @@ export const NavBar = ({lang = 'en'}) => {
                         href=""
                         sx={{
                             mr: 2,
-                            display: {xs: 'flex', md: 'none'},
+                            display: {
+                                xs: 'flex',
+                                md: 'none',
+                            },
                             flexGrow: 1,
                             fontFamily: 'monospace',
                             fontWeight: 700,
                             letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
-                        }}
-                    >
+                        }}>
                         {translate[lang].appName}
                     </Typography>
-                    <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
+                    <Box sx={{
+                        flexGrow: 1,
+                        display: {
+                            xs: 'none',
+                            md: 'flex',
+                        }}}>
                         {translate[lang].pages.map((page) => (
                             <Button
-                                key={page}
-                                href={page}
-                                sx={{my: 2, color: 'white', display: 'block'}}
-                            >
-                                {page}
+                                key={page.name}
+                                href={page.path}
+                                sx={{my: 2,
+                                    color: 'white',
+                                    display: 'block',
+                                }}>
+                                {page.name}
                             </Button>
                         ))}
                     </Box>
-
                     <Box sx={{flexGrow: 0}}>
                         <Tooltip title={translate[lang].settingsTab}>
                             <IconButton
@@ -149,8 +184,7 @@ export const NavBar = ({lang = 'en'}) => {
                                 sx={{p: 0}}>
                                 <Avatar
                                     alt=""
-                                    src="/assets/profile.png"
-                                />
+                                    src="/assets/profile.png"/>
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -167,17 +201,8 @@ export const NavBar = ({lang = 'en'}) => {
                                 horizontal: 'right',
                             }}
                             open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {translate[lang].settings.map((setting) => (
-                                <MenuItem
-                                    key={setting}
-                                    onClick={handleCloseUserMenu}>
-                                    <Typography
-                                        textAlign="center">{setting}
-                                    </Typography>
-                                </MenuItem>
-                            ))}
+                            onClose={handleCloseUserMenu}>
+                            <MenuItems/>
                         </Menu>
                     </Box>
                 </Toolbar>
