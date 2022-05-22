@@ -15,11 +15,11 @@ export const CryptoMenu = () => {
             items: [
                 {
                     name: 'Crypto',
-                    path: 'portfolio/crypto',
+                    path: 'crypto',
                 },
                 {
                     name: 'Acciones',
-                    path: 'portfolio/actions',
+                    path: 'actions',
                 }],
         },
         en: {
@@ -27,20 +27,18 @@ export const CryptoMenu = () => {
             items: [
                 {
                     name: 'Crypto',
-                    path: 'portfolio/crypto',
+                    path: 'crypto',
                 },
                 {
                     name: 'Actions',
-                    path: 'portfolio/actions',
+                    path: 'actions',
                 }],
         },
     }
 
     const handleClose = () => setAnchorEl(null)
 
-    const handleClick = (event) =>{
-        setAnchorEl(event.currentTarget)
-    }
+    const handleClick = (event) => setAnchorEl(event.currentTarget)
 
     return (
         <>
