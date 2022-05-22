@@ -16,6 +16,8 @@ import AdbIcon from '@mui/icons-material/Adb'
 
 import {LangContext} from '../../hooks/langContext'
 import {MenuItems} from './MenuItems'
+import {CryptoMenu} from './CryptoMenu'
+import {Link} from 'react-router-dom'
 
 export const NavBar = () => {
     const {lang} = useContext(LangContext)
@@ -31,10 +33,6 @@ export const NavBar = () => {
                 {
                     name: 'Mercados',
                     path: 'markets',
-                },
-                {
-                    name: 'Portafolio',
-                    path: 'portfolio',
                 }],
         },
         en: {
@@ -44,10 +42,6 @@ export const NavBar = () => {
                 {
                     name: 'Markets',
                     path: 'markets',
-                },
-                {
-                    name: 'Portfolio',
-                    path: 'portfolio',
                 }],
         },
     }
@@ -166,16 +160,20 @@ export const NavBar = () => {
                             md: 'flex',
                         }}}>
                         {translate[lang].pages.map((page) => (
-                            <Button
+                            <Link
                                 key={page.name}
-                                href={page.path}
-                                sx={{my: 2,
-                                    color: 'white',
-                                    display: 'block',
-                                }}>
-                                {page.name}
-                            </Button>
+                                to={page.path}>
+                                <Button
+                                    // to={page.path}
+                                    sx={{my: 2,
+                                        color: 'white',
+                                        display: 'block',
+                                    }}>
+                                    {page.name}
+                                </Button>
+                            </Link>
                         ))}
+                        <CryptoMenu/>
                     </Box>
                     <Box sx={{flexGrow: 0}}>
                         <Tooltip title={translate[lang].settingsTab}>
