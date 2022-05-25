@@ -1,6 +1,5 @@
-import React, {useContext} from 'react'
+import {useContext} from 'react'
 
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import {
     Collapse,
     List,
@@ -8,6 +7,7 @@ import {
     ListItemIcon,
     ListItemText,
 } from '@mui/material'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 import {LangContext} from '../../../../hooks/langContext'
 
@@ -32,23 +32,28 @@ export const CollapseItem = ({open}) => {
             <List
                 component="div"
                 disablePadding>
-                <ListItemButton sx={{pl: 4}} onClick={() => setLang('es')}>
-                    <ListItemIcon>
-                        <ArrowForwardIcon color='primary'/>
-                    </ListItemIcon>
-                    <ListItemText
-                        primary={translate[lang].spanish}
-                        color='primary' />
-                </ListItemButton>
-                <ListItemButton sx={{pl: 4}} onClick={() => setLang('en')}>
-                    <ListItemIcon>
-                        <ArrowForwardIcon color='primary'/>
-                    </ListItemIcon>
-                    <ListItemText
-                        primary={translate[lang].english}
-                        color='primary' />
-                </ListItemButton>
+                <ListItemLanguage
+                    lang={'es'}
+                    language={translate[lang].spanish}/>
+                <ListItemLanguage
+                    lang={'en'}
+                    language={translate[lang].english}/>
             </List>
         </Collapse>
+    )
+}
+
+
+const ListItemLanguage = ({lang, language}) => {
+    const {setLang} = useContext(LangContext)
+    return (
+        <ListItemButton sx={{pl: 4}} onClick={() => setLang(lang)}>
+            <ListItemIcon>
+                <ArrowForwardIcon color='primary'/>
+            </ListItemIcon>
+            <ListItemText
+                primary={language}
+                color='primary' />
+        </ListItemButton>
     )
 }
