@@ -1,14 +1,14 @@
-import React, {useContext} from 'react'
+import {useContext} from 'react'
 
 import ListSubheader from '@mui/material/ListSubheader'
 import List from '@mui/material/List'
 
+import {logout} from '../../../../services/self'
 import {LangContext} from '../../../../hooks/langContext'
 import {ListItem, ListItemCollapser} from './ListItem'
 
 export function UserMenu() {
     const {lang} = useContext(LangContext)
-
     const translate = {
         es: {
             subheader: 'Menu',
@@ -73,7 +73,8 @@ export function UserMenu() {
                 text={translate[lang].lang.text} />
             <ListItem
                 icon={translate[lang].logout.icon}
-                text={translate[lang].logout.text} />
+                text={translate[lang].logout.text}
+                onClick={logout} />
         </List>
     )
 }
