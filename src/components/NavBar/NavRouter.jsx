@@ -1,11 +1,14 @@
-import React from 'react'
-import {Routes, Route} from 'react-router-dom'
+import {useState} from 'react'
+import {Routes, Route, Navigate} from 'react-router-dom'
 
+import {LangContext} from '../../hooks/langContext'
 import {Markets} from '../Markets/Markets'
 import {NavBar} from './NavBar'
 import {Overview} from '../Portfolio/Crypto/Overview/Overview'
 
-export const NavRouter = () => {
+export const NavRouter = ({isLogged = false}) => {
+    const [lang, setLang] = useState('en')
+
     const paths = {
         default: '/',
         markets: 'markets',
@@ -16,23 +19,28 @@ export const NavRouter = () => {
 
     }
 
+    const IsLoggedIn = ({isLogged}) =>
+        isLogged ? <Markets /> : <Navigate to="/login" replace={true}/>
+
     return (
-        <>
+        <LangContext.Provider value={{
+            lang,
+            setLang}}>
             <NavBar/>
             <Routes>
                 <Route
                     path={paths.markets}
-                    element={<Markets/>}/>
+                    element={<Markets/>} />
                 <Route
                     path={paths.portfolio.crypto}
-                    element={<Overview/>}/>
+                    element={<Overview/>} />
                 <Route
                     path={paths.portfolio.actions}
-                    element={<h1>Actions</h1>}/>
+                    element={<h1>Actions</h1>} />
                 <Route
                     path={paths.default}
-                    element={<Markets/>}/>
+                    element={<IsLoggedIn isLogged={isLogged} />} />
             </Routes>
-        </>
+        </LangContext.Provider>
     )
 }
