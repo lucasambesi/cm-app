@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
-import {Markets} from './components/Markets'
-import {NavBar} from './components/NavBar/NavBar'
-import {Overview} from './components/Portfolio/Crypto/Overview/Overview'
-import {LangContext} from './hooks/langContext'
+import {Markets} from '../Markets/Markets'
+import {NavBar} from './NavBar'
+import {Overview} from '../Portfolio/Crypto/Overview/Overview'
+import {LangContext} from '../../hooks/langContext'
 
-export const App = () => {
+export const NavRouter = () => {
     const [lang, setLang] = useState('en')
 
     const paths = {

@@ -15,8 +15,8 @@ import MenuIcon from '@mui/icons-material/Menu'
 import AdbIcon from '@mui/icons-material/Adb'
 
 import {LangContext} from '../../hooks/langContext'
-import {MenuItems} from './MenuItems'
-import {CryptoMenu} from './CryptoMenu'
+import {UserMenu} from './Menu/UserMenu/UserMenu'
+import {PortfolioMenu} from './Menu/PortfolioMenu'
 import {Link} from 'react-router-dom'
 
 export const NavBar = () => {
@@ -173,7 +173,7 @@ export const NavBar = () => {
                                 </Button>
                             </Link>
                         ))}
-                        <CryptoMenu/>
+                        <PortfolioMenu/>
                     </Box>
                     <Box sx={{flexGrow: 0}}>
                         <Tooltip title={translate[lang].settingsTab}>
@@ -200,7 +200,7 @@ export const NavBar = () => {
                             }}
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}>
-                            <MenuItems/>
+                            <UserMenu/>
                         </Menu>
                     </Box>
                 </Toolbar>

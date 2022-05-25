@@ -2,9 +2,9 @@ import React, {useState, useContext} from 'react'
 import {Button, Menu, MenuItem} from '@mui/material'
 import {Link} from 'react-router-dom'
 
-import {LangContext} from '../../hooks/langContext'
+import {LangContext} from '../../../hooks/langContext'
 
-export const CryptoMenu = () => {
+export const PortfolioMenu = () => {
     const {lang} = useContext(LangContext)
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl)

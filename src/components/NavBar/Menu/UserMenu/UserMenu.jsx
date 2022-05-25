@@ -3,10 +3,10 @@ import React, {useContext} from 'react'
 import ListSubheader from '@mui/material/ListSubheader'
 import List from '@mui/material/List'
 
-import {LangContext} from '../../hooks/langContext'
+import {LangContext} from '../../../../hooks/langContext'
 import {ListItem, ListItemCollapser} from './ListItem'
 
-export function MenuItems() {
+export function UserMenu() {
     const {lang} = useContext(LangContext)
 
     const translate = {

@@ -9,7 +9,7 @@ import {
     ListItemText,
 } from '@mui/material'
 
-import {LangContext} from '../../hooks/langContext'
+import {LangContext} from '../../../../hooks/langContext'
 
 const translate = {
     es: {
