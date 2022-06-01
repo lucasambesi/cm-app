@@ -21,7 +21,7 @@ const theme = createTheme()
 export const SignIn = () => {
     const navigate = useNavigate()
     const {dispatchUser} = useContext(AuthContext)
-
+    const lastPath = localStorage.getItem('lastPath') || '/markets'
     const [action, setAction] = useState({
         type: types.login,
         payload: {
@@ -47,7 +47,7 @@ export const SignIn = () => {
 
     const handleSubmit = () => {
         dispatchUser(action)
-        navigate('/markets', {
+        navigate(lastPath, {
             replace: true,
         })
     }
