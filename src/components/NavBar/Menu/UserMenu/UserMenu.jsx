@@ -1,14 +1,19 @@
-import React, {useContext} from 'react'
+import {useContext} from 'react'
+import {useNavigate} from 'react-router-dom'
 
 import ListSubheader from '@mui/material/ListSubheader'
 import List from '@mui/material/List'
 
-import {LangContext} from '../../../../hooks/langContext'
+// import {logout} from '../../../../services/self'
 import {ListItem, ListItemCollapser} from './ListItem'
+import {LangContext} from '../../../../hooks/langContext'
+import {AuthContext} from '../../../../auth/authContext'
+import {types} from '../../../../types/types'
 
 export function UserMenu() {
     const {lang} = useContext(LangContext)
-
+    const {dispatchUser} = useContext(AuthContext)
+    const navigate = useNavigate()
     const translate = {
         es: {
             subheader: 'Menu',
@@ -50,6 +55,17 @@ export function UserMenu() {
         },
     }
 
+
+    const logout = () => {
+        dispatchUser({
+            type: types.logout,
+        })
+
+        navigate('login', {
+            replace: true,
+        })
+    }
+
     return (
         <List
             sx={{
@@ -73,7 +89,8 @@ export function UserMenu() {
                 text={translate[lang].lang.text} />
             <ListItem
                 icon={translate[lang].logout.icon}
-                text={translate[lang].logout.text} />
+                text={translate[lang].logout.text}
+                onClick={logout} />
         </List>
     )
 }

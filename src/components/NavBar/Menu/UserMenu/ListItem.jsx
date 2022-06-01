@@ -21,10 +21,10 @@ const setIcon = (icon) => {
     }
 }
 
-export const ListItem = ({icon, text}) => {
+export const ListItem = ({icon, text, onClick}) => {
     return (
-        <ListItemButton>
-            <ListItemIcon>
+        <ListItemButton onClick={onClick}>
+            <ListItemIcon >
                 {setIcon(icon)}
             </ListItemIcon>
             <ListItemText primary={text}/>

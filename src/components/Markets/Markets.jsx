@@ -7,10 +7,11 @@ import {TableCoins} from './TableCoins/TableCoins'
 export const Markets = () => {
     const {state: {data, loading}} = useFetchCoins()
     useEffect(() => {
-    }, [loading])
+    }, [])
 
     useEffect(() => {
     }, [data])
+
 
     return (
         <>
