@@ -6,6 +6,7 @@ import {
 
 import {NavRouter} from '../components/NavBar/NavRouter'
 import {SignIn} from '../components/Login/Login'
+import {PrivateRouter} from './PrivateRouter'
 
 export const AppRouter = () => {
     const paths = {
@@ -22,7 +23,11 @@ export const AppRouter = () => {
                 </Route>
                 <Route
                     path={paths.navRouter}
-                    element={<NavRouter />}>
+                    element={
+                        <PrivateRouter>
+                            <NavRouter />
+                        </PrivateRouter>
+                    }>
                 </Route>
             </Routes>
         </Router>
