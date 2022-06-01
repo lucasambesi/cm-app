@@ -6,8 +6,11 @@ import {Markets} from '../Markets/Markets'
 import {NavBar} from './NavBar'
 import {Overview} from '../Portfolio/Crypto/Overview/Overview'
 
-export const NavRouter = ({isLogged = false}) => {
+const IS_LOGGED = localStorage.getItem('isLogged')
+
+export const NavRouter = () => {
     const [lang, setLang] = useState('en')
+    const [isLogged] = useState(IS_LOGGED)
 
     const paths = {
         default: '/',
@@ -19,7 +22,7 @@ export const NavRouter = ({isLogged = false}) => {
 
     }
 
-    const IsLoggedIn = ({isLogged}) =>
+    const IsLoggedIn = () =>
         isLogged ? <Markets /> : <Navigate to="/login" replace={true}/>
 
     return (
@@ -39,7 +42,7 @@ export const NavRouter = ({isLogged = false}) => {
                     element={<h1>Actions</h1>} />
                 <Route
                     path={paths.default}
-                    element={<IsLoggedIn isLogged={isLogged} />} />
+                    element={<IsLoggedIn />} />
             </Routes>
         </LangContext.Provider>
     )

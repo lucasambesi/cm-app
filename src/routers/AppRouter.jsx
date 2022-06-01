@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom'
 
 import {NavRouter} from '../components/NavBar/NavRouter'
-import {Login} from '../components/Login/Login'
+import {SignIn} from '../components/Login/Login'
 
 export const AppRouter = () => {
     const paths = {
@@ -18,7 +18,7 @@ export const AppRouter = () => {
             <Routes>
                 <Route
                     path={paths.login}
-                    element={<Login />}>
+                    element={<SignIn />}>
                 </Route>
                 <Route
                     path={paths.navRouter}
