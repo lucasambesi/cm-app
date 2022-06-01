@@ -1,5 +1,5 @@
 import 'preact/debug'
 import {render} from 'preact'
-import {AppRouter} from './routers/AppRouter'
+import {App} from './App'
 
-render(<AppRouter />, document.getElementById('app'))
+render(<App />, document.getElementById('app'))
