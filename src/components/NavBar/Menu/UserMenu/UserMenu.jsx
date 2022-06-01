@@ -15,7 +15,7 @@ export function UserMenu() {
     const {dispatchUser} = useContext(AuthContext)
     const navigate = useNavigate()
     const translate = {
-        es: {
+        en: {
             subheader: 'Menu',
             profile: {
                 text: 'Profile',
@@ -34,7 +34,7 @@ export function UserMenu() {
                 icon: 'LogoutIcon',
             },
         },
-        en: {
+        es: {
             subheader: 'Menu',
             profile: {
                 text: 'Perfil',
