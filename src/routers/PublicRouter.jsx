@@ -8,7 +8,7 @@ export const PublicRouter = ({children}) => {
 
     return (
         user.logged ?
-            <Navigate to="/Markets" replace={true}/> :
+            <Navigate to="/markets" replace={true}/> :
             children
     )
 }
