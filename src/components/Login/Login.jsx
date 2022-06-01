@@ -82,7 +82,7 @@ export const SignIn = () => {
                     <Typography
                         component="h1"
                         variant="h5">
-                        {texts.signIn}
+                        {texts.submit}
                     </Typography>
                     <Box
                         component="form"
