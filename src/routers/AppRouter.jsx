@@ -6,6 +6,7 @@ import {
 
 import {NavRouter} from '../components/NavBar/NavRouter'
 import {SignIn} from '../components/Login/Login'
+import {PublicRouter} from './PublicRouter'
 import {PrivateRouter} from './PrivateRouter'
 
 export const AppRouter = () => {
@@ -19,7 +20,11 @@ export const AppRouter = () => {
             <Routes>
                 <Route
                     path={paths.login}
-                    element={<SignIn />}>
+                    element={
+                        <PublicRouter>
+                            <SignIn />
+                        </PublicRouter>
+                    }>
                 </Route>
                 <Route
                     path={paths.navRouter}
