@@ -1,5 +1,4 @@
-import {useState} from 'react'
-
+import {useState, useContext} from 'react'
 import {useNavigate} from 'react-router-dom'
 
 import Avatar from '@mui/material/Avatar'
@@ -14,13 +13,21 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import {createTheme, ThemeProvider} from '@mui/material/styles'
 
+import {types} from '../../types/types'
+import {AuthContext} from '../../auth/authContext'
+
 const theme = createTheme()
 
 export const SignIn = () => {
     const navigate = useNavigate()
-    const [user, setUser] = useState({
-        email: '',
-        password: '',
+    const {dispatchUser} = useContext(AuthContext)
+
+    const [action, setAction] = useState({
+        type: types.login,
+        payload: {
+            email: '',
+            password: '',
+        },
     })
 
     const texts = {
@@ -39,17 +46,19 @@ export const SignIn = () => {
 
 
     const handleSubmit = () => {
-        localStorage.setItem('isLogged', true)
-        localStorage.setItem('user', JSON.stringify(user))
+        dispatchUser(action)
         navigate('/markets', {
             replace: true,
         })
     }
 
     const handleChange = (e) => {
-        setUser({
-            ...user,
-            [e.target.name]: e.target.value,
+        setAction({
+            type: types.login,
+            payload: {
+                ...action.payload,
+                [e.target.name]: e.target.value,
+            },
         })
     }
 

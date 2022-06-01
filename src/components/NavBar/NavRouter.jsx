@@ -6,11 +6,10 @@ import {Markets} from '../Markets/Markets'
 import {NavBar} from './NavBar'
 import {Overview} from '../Portfolio/Crypto/Overview/Overview'
 
-const IS_LOGGED = localStorage.getItem('isLogged')
 
 export const NavRouter = () => {
     const [lang, setLang] = useState('en')
-    const [isLogged] = useState(IS_LOGGED)
+    const user = JSON.parse(localStorage.getItem('user')) || {logged: false}
 
     const paths = {
         default: '/',
@@ -23,7 +22,7 @@ export const NavRouter = () => {
     }
 
     const IsLoggedIn = () =>
-        isLogged ? <Markets /> : <Navigate to="/login" replace={true}/>
+        user.logged ? <Markets /> : <Navigate to="/login" replace={true}/>
 
     return (
         <LangContext.Provider value={{
